@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class App extends Component {
   state = {
     token: localStorage.getItem('token'),
+    imageUrl: ''
   }
   setAuth = () => {
     this.setState({token: localStorage.getItem('token')});
@@ -17,10 +18,15 @@ class App extends Component {
     toast.warn('You are logged out!');
     this.setState({token: ''});
   }
+  setImageUrl = (url) => {
+    this.setState({
+      imageUrl: url
+    })
+  }
   render() {
     return (
       <div>
-        {this.state.token ? (<Home LogOut={this.LogOut}/>) : (<Login setAuth={this.setAuth}/>)}
+        {this.state.token ? (<Home LogOut={this.LogOut} userPhoto={this.state.imageUrl}/>) : (<Login setAuth={this.setAuth} setImageUrl={this.setImageUrl}/>)}
         <ToastContainer/>
       </div>
     );

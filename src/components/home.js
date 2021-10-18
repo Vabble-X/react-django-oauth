@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import DefaultProfilePicture from '../assets/images/profile.png';
 
 export default class Home extends Component{
@@ -18,12 +19,10 @@ export default class Home extends Component{
           headers: {'Content-Type': 'application/json'}
           }).then(res => res.json()).then(json => {
             if (json.error){
-              console.log('Error: ' + json.error);
+              toast.error(json.error)
               this.props.LogOut();
             }
             else{
-              console.log('User data is loaded!');
-              console.log("json", json);
               this.setState({
                 email: json.email,
                 role: json.role
