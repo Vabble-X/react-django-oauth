@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
+import DefaultProfilePicture from '../assets/images/profile.png';
 
 export default class Home extends Component{
     state={
       email: '',
-      username: '',
-      first_name: '',
-      last_name: '',
+      role: '',
+      profilePhoto: DefaultProfilePicture
     }
     componentDidMount(){
       const body = {
@@ -22,22 +23,41 @@ export default class Home extends Component{
             }
             else{
               console.log('User data is loaded!');
+              console.log("json", json);
               this.setState({
                 email: json.email,
-                username: json.username,
-                first_name: json.first_name,
-                last_name: json.last_name,
+                role: json.role
               })
             }
           });
     }
     render(){
       return(
-        <div className="center animated fadeIn">
-          <h3>Logged as {this.state.username}</h3>
-          <h4>{this.state.email}</h4>
-          <h4>{this.state.first_name} {this.state.last_name}</h4>
-          <button onClick={this.props.LogOut} className="btn btn-danger">Log out</button>
+        <div>
+          <Navbar
+            bg="primary"
+            variant="dark"
+            sticky="top"
+            className="d-flex justify-content-between"
+          >
+            <Nav>
+              {
+                this.state.role === 0 ? "Admin" : "User"
+              }
+            </Nav>
+            <Nav className="d-flx justify-content-center align-items-center">
+              <h5>{this.state.email}</h5>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic" className="bg-transparent border-0">
+                  <img src={this.state.profilePhoto} width='30' height='30' className="img-thumbnail rounded-circle" alt="" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="mr-5">
+                  <Dropdown.Item onClick={this.props.LogOut}>Log Out</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav>
+          </Navbar>
         </div>
       );
     }

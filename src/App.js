@@ -3,6 +3,7 @@ import Login from './components/login';
 import Home from './components/home';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   state = {
@@ -18,7 +19,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div>
         {this.state.token ? (<Home LogOut={this.LogOut}/>) : (<Login setAuth={this.setAuth}/>)}
         <ToastContainer/>
       </div>

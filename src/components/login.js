@@ -43,14 +43,21 @@ export default class Login extends Component {
 
   render(){
     return(
-      <div className="row animated fadeIn">
-        <div className="col-lg-6 offset-lg-3 card">
-          <label>Login:</label>
-          <input type="text" className="form-control" value={this.state.login} onChange={this.handleChangeLogin}/>
-          <label>Password:</label>
-          <input type="password" className="form-control" value={this.state.password} onChange={this.handleChangePassword}/>
-          <br />
-          <button className="btn btn-light" onClick={this.submit}>Auth</button>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-lg-6 offset-lg-3 card">
+            <h5>Sign In</h5>
+            <label className="mt-4">Email or Username:</label>
+            <input type="text" className="form-control" value={this.state.login} onChange={this.handleChangeLogin}/>
+            <label className="mt-3">Password:</label>
+            <input type="password" className="form-control" value={this.state.password} onChange={this.handleChangePassword}/>
+            <br />
+            <button className="btn btn-primary" onClick={this.submit}>Login</button>
+            <br />
+            <h6 className="text-center">Or</h6>
+            <br />
+            asf
+          </div>
         </div>
       </div>
     );
