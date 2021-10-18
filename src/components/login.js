@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 
 export default class Login extends Component {
   state = {
@@ -24,11 +25,11 @@ export default class Login extends Component {
         headers: {'Content-Type': 'application/json'}
       }).then(res => res.json()).then(json => {
         if (json.error){
-          console.log('error');
+          toast.error(json.error);
           this.setState({error: json.error});
         }
         else{
-          console.log('Authentication!');
+          toast.success('Login Success!')
           localStorage.setItem('token', json.token);
           this.props.setAuth();
         }
@@ -44,7 +45,6 @@ export default class Login extends Component {
     return(
       <div className="row animated fadeIn">
         <div className="col-lg-6 offset-lg-3 card">
-          {this.state.error ? (<p className="text-danger">{this.state.error}</p>) : ''}
           <label>Login:</label>
           <input type="text" className="form-control" value={this.state.login} onChange={this.handleChangeLogin}/>
           <label>Password:</label>
