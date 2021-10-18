@@ -11,12 +11,12 @@ class App extends Component {
     imageUrl: ''
   }
   setAuth = () => {
-    this.setState({token: localStorage.getItem('token')});
+    this.setState({ token: localStorage.getItem('token') });
   }
   LogOut = () => {
     localStorage.removeItem('token');
     toast.warn('You are logged out!');
-    this.setState({token: ''});
+    this.setState({ token: '' });
   }
   setImageUrl = (url) => {
     this.setState({
@@ -26,8 +26,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.token ? (<Home LogOut={this.LogOut} userPhoto={this.state.imageUrl}/>) : (<Login setAuth={this.setAuth} setImageUrl={this.setImageUrl}/>)}
-        <ToastContainer/>
+        {this.state.token ? (<Home LogOut={this.LogOut} userPhoto={this.state.imageUrl} />) : (<Login setAuth={this.setAuth} setImageUrl={this.setImageUrl} />)}
+        <ToastContainer />
       </div>
     );
   }
